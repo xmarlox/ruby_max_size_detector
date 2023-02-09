@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+require "max_size_detector"
+
+file = ARGV[0]&.strip || "input.txt"
+max_size = if file.to_i.zero?
+  ARGV[1]&.strip || MaxSizeDetector::FILES_MAX_SIZE
+else
+  file
+end
+file = "input.txt" if file.to_i.positive?
+
+MaxSizeDetector.run(file: file, max_size: max_size)
